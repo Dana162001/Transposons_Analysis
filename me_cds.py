@@ -5,22 +5,17 @@ from utils.parse_gbff_files import parse_gbff_file
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="WRITE SCRIPT DESCRIPTION HERE")
-    parser.add_argument("-i", "--input", nargs='+', required=True,
-                        default='C:/Users/daryn/Desktop/p_SA/results/modified_all/',
-                        help=f"")
-    parser.add_argument("-o", "--output", nargs='+', required=True,
-                        default='C:/Users/daryn/Desktop/p_SA/results/cds_sequences/',
+    parser = argparse.ArgumentParser(description="CDS extraxtion")
+    parser.add_argument("-i", "--input", required=True,
+                        help=f"directory containing modified .gbff files")
+    parser.add_argument("-o", "--output", required=True,
                         help=f"")
     return parser.parse_args()
 
 
-def main():
-    # args = parse_args()
-    # input_dir = pathlib.Path(args.input)
-    # output_dir = pathlib.Path(args.output)
-    input_dir = pathlib.Path('C:/Users/daryn/Desktop/p_SA/results/modified_all/')
-    output_dir = pathlib.Path('C:/Users/daryn/Desktop/p_SA/results/cds_sequences/')
+def me_cds(input_path, output_path):
+    input_dir = pathlib.Path(input_path)
+    output_dir = pathlib.Path(output_path)
     output_dir.mkdir(exist_ok=True, parents=True)
 
     for file_path in input_dir.glob('*'):
@@ -52,4 +47,5 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    args = parse_args()
+    me_cds(args.input, args.output)

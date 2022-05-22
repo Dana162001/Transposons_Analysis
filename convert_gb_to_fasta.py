@@ -25,6 +25,4 @@ def convert_gb_to_fasta(input_path, output_path):
 
 if __name__ == '__main__':
     args = parse_args()
-    input_dir = args.input
-    output_dir = args.output
     convert_gb_to_fasta(args.input, args.output)
