@@ -7,6 +7,7 @@ from Bio import SeqIO
 def parse_args():
     parser = argparse.ArgumentParser(description="Iteration over files in directory and convert from genbank to fasta")
     parser.add_argument("-i", "--input", required=True,
+                        default="/data",
                         help=f"directory containing .gbff files")
     parser.add_argument("-o", "--output", required=True,
                         help=f"")

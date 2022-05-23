@@ -1,6 +1,10 @@
 import pathlib
 
-from Bio import GenBank
+from Bio import GenBank, SeqIO
+
+
+def load_gb_file(path):
+    return list(SeqIO.parse(path, 'genbank'))[0]
 
 
 def parse_gbff_location(location: str):

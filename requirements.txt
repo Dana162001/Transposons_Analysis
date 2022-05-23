@@ -1,1 +1,2 @@
 biopython==1.79
+pandas~=1.4.2
