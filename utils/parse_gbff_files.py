@@ -28,10 +28,17 @@ def parse_gbff_file(file_path: pathlib.Path):
                     location = parse_gbff_location(feature.location)
                     mobile_elements.append(location)
 
+        sequence = None
         if feature.key == "CDS":
             if "join" in feature.location:
                 continue
             location = parse_gbff_location(feature.location)
-            cds.append(location)
+            for qualifier in feature.qualifiers:
+                if qualifier.key == '/translation=':
+                    sequence = qualifier.value.replace('"', '')
+
+            # only add CDS if translation exist
+            if sequence is not None:
+                cds.append({"location": location, "sequence": sequence})
 
     return gen_cds_content.sequence, mobile_elements, cds

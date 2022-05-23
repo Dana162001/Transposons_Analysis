@@ -62,7 +62,6 @@ def main():
 
     with multiprocessing.Pool() as p:
         p.starmap(add_data_to_gbk, args_list)
-        # add_data_to_gbk(csv_file_path, unmodified_gb_file, modified_gb_file)
 
 
 if __name__ == '__main__':
