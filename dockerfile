@@ -6,6 +6,8 @@ RUN apt update &&  \
     apt-get upgrade -y && \
     apt install python3-pip -y
 
+RUN apt install cd-hit
+
 WORKDIR /p_SA
 
 COPY requirements.txt requirements.txt
