@@ -33,7 +33,7 @@ def count_lines_between_clusters(file_path):
 def plot_clusters_histogram(file_path):
     hits_in_cluster = count_lines_between_clusters(file_path)
 
-    plt.hist(hits_in_cluster, bins=200)
+    plt.hist(hits_in_cluster, bins = 100, log = True, color='deepskyblue', edgecolor='black')
 
     plt.title('Distribution of hits in a clusters')
     plt.xlabel('Number of hits')
@@ -42,6 +42,10 @@ def plot_clusters_histogram(file_path):
     plt.show()
 
 
-if __name__ == '__main__':
+def main():
     args = parse_args()
     plot_clusters_histogram(args.input)
+
+
+if __name__ == '__main__':
+    main()

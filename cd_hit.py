@@ -12,7 +12,7 @@ def parse_args():
 
 
 def run_cd_hit(input_path, output_path):
-    os.system(f"cd-hit -i {input_path} -o {output_path} -c 0.6 -aL 0.9 -n 4 -M 4000")
+    os.system(f"cd-hit -i {input_path} -o {output_path} -c 0.6 -aS 0.8 -n 4 -M 4000")
 
 
 def main():
