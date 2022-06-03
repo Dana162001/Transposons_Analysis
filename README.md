@@ -15,7 +15,7 @@
 }
 
 ```
-## About The Project
+# About The Project
 
 This pipeline is built to search for **genes that are transferred by transposition** within the bacterial genome. The first step of the algorithm is to search for insertion sequences (that are flunking sequences of transposons) using the **ISEScan** tool. 
 
@@ -52,7 +52,7 @@ conda install -c bioconda cd-hit
 conda install -c bioconda artemis
 ```
 
-### Docker 
+## Docker 
 1. Create `YOUR_DATA_ROOT` directory on your local machine
    ```
    mkdir /YOUR_DATA_ROOT
@@ -61,3 +61,18 @@ conda install -c bioconda artemis
    ```
    docker run -it -u $(id -u):$(id -g) -v /YOUR_DATA_ROOT:/data dana162001/p_SA /bin/bash
    ```
+# Running pipeline
+1. Download/prepear genomes of interest in .gbff format
+2. Run script to convert .gbff to .fasta format
+   ```
+   convert_gb_to_fasta.py -i [Name_of_dir_with_gb_files] -o [Name_of_dir_with_fasta_files]
+   ```
+3. Run ISEScan 
+ ```
+ isescan.py --seqfile seq_ID.fasta --output results --nthread 2
+```
+- By default, ISEScan will use one CPU core but you can change it using command option  ```--nthread [num] ```
+4. Run artemis_visualisation.py to add coordinates of new ISs to the original .gbff files
+ ```
+ artemis_visualisation.py -i [dir_to_ISEScan_results_csv] -u [dir_to_original_gbff_files] -m [dir_to_modified_gbff_files]
+```
