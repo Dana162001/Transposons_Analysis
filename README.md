@@ -88,5 +88,5 @@ conda install -c bioconda artemis
 - -c sequence identity threshold, default 0.9 this is the default cd-hit's "global sequence identity" calculated as: number of identical amino acids in alignment divided by the full length of the shorter sequence
 - -aS alignment coverage for the shorter sequence, default 0.0 if set to 0.9, the alignment must covers 90% of the sequence
 - -n 4 for thresholds 0.6 ~ 0.7
-- - -M max available memory (Mbyte), default 400
+- -M max available memory (Mbyte), default 400
  
