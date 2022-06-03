@@ -76,3 +76,17 @@ conda install -c bioconda artemis
  ```
  artemis_visualisation.py -i [dir_to_ISEScan_results_csv] -u [dir_to_original_gbff_files] -m [dir_to_modified_gbff_files]
 ```
+5. Run me_cds.py to extract coding sequences from modified .gbff files
+ ```
+ artemis_visualisation.py -i [dir_to_modified_gbff_files]  -o merged_cds_prot.fasta
+ ```
+6. Run cd_hit.py to cluster extracted sequences
+ ```
+ cd_hit.py -i [dir_to_merged_cds_prot.fasta]  -o [output_path]
+ ```
+- Default parameter: -c 0.6 -aS 0.8 -n 4 -M 4000
+- -c sequence identity threshold, default 0.9 this is the default cd-hit's "global sequence identity" calculated as: number of identical amino acids in alignment divided by the full length of the shorter sequence
+- -aS alignment coverage for the shorter sequence, default 0.0 if set to 0.9, the alignment must covers 90% of the sequence
+- -n 4 for thresholds 0.6 ~ 0.7
+- - -M max available memory (Mbyte), default 400
+ 
