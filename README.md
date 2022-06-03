@@ -22,3 +22,7 @@ This pipeline is built to search for **genes that are transferred by transpositi
 Then transposon is made from found ISs by adding coordinates to the original GenBank file. The next task is to extract coding sequences that lie within the transposons in the fasta format. The visualization with Artemis is optional. 
 
 In the next step, all extracted sequences are clustered by CD-HIT, and clusters are filtered depending on the threshold. Finally, one representative sequence is chosen from each cluster and blasted against the database of interest. 
+
+* [ISEScan](https://github.com/xiezhq/ISEScan)
+* [CD-HIT](https://anaconda.org/bioconda/cd-hit)
+* [Conda](https://docs.conda.io/en/latest/miniconda.html)
