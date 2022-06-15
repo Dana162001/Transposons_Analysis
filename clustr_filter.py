@@ -32,12 +32,13 @@ def cluster_id(path_to_file, num_of_hits):
                 counter += 1
     counts.append(counter)
 
-    output = []
+    output_ids = []
+    output_counts = []
     for i in range(len(counts)):
         if counts[i] > num_of_hits:
-            output.append(rep_seq[i].split(" ")[1].replace("...", "")[1:])
-
-    return output
+            output_ids.append(rep_seq[i].split(" ")[1].replace("...", "")[1:])
+            output_counts.append(counts[i])
+    return output_ids, output_counts
 
 
 def main():
@@ -52,7 +53,7 @@ def main():
 
     output_file.parent.mkdir(exist_ok=True, parents=True)
 
-    extracted_rep_seqs_ids = cluster_id(input_file, threshold)
+    extracted_rep_seqs_ids, _ = cluster_id(input_file, threshold)
     representative_sequences = load_fasta_file(input_file.replace(".clstr", ""))
 
     representative_sequences_output = []
