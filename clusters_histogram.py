@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="IHistogram of clusters distribution")
+    parser = argparse.ArgumentParser(description="Histogram of sequences distribution in the clusters")
     parser.add_argument("-i", "--input", required=True,
                         default="/data",
                         help=f"path to .clstr file from CD-HIT output")

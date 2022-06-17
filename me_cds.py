@@ -19,25 +19,29 @@ def parse_args():
 def me_cds(file_path, output_dir):
     _, mobile_elements, cds_list = parse_gbff_file(file_path)
 
-    # todo
-    non_overlapping_me = mobile_elements
+    num_transposons = [0]*len(mobile_elements)
     interesting_sequences = []
 
     for cds in cds_list:
         cds_location = cds["location"]
-        for mobile_element in non_overlapping_me:
+        for i, mobile_element in enumerate(mobile_elements):
             if mobile_element[1] > cds_location[0] > mobile_element[0] \
                     and mobile_element[0] < cds_location[1] < mobile_element[1]:
                 interesting_sequences.append(cds["sequence"])
+                num_transposons[i] += 1
 
     print(f"Saving {len(interesting_sequences)} cds sequences  from {file_path.stem}")
     out_file = output_dir / (file_path.stem + ".fasta")
-
     with open(out_file, "w") as f:
         i = 0
         for seq in interesting_sequences:
             f.write(f">{i}.{file_path.stem}\n{seq}\n")
             i += 1
+
+    num_transposons_output_file = output_dir / (file_path.stem + ".count")
+    with open(num_transposons_output_file, "w") as f:
+        for num in num_transposons:
+            f.write(f"{num}\n")
 
 
 def main():
@@ -48,7 +52,8 @@ def main():
 
     Parallel(n_jobs=cpu_count())(delayed(me_cds)(path, output_dir) for path in input_dir.glob('*.gbff'))
     # merge output files
-    os.system(f"cat {output_dir}/* > merged_cds_prot.fasta")
+    os.system(f"cat {output_dir}/*.fasta > merged_cds_prot.fasta")
+    os.system(f"cat {output_dir}/*count > merged_num_transposons.count")
 
 
 if __name__ == '__main__':

@@ -1,6 +1,6 @@
 # Step by step workflow for composite transposons analysis based on ISEScan
 
-![workflow diagram](figs/workflow_p_sa.jpg "Wordflow diagram")
+![workflow diagram](figs/workflow.jpg "Wordflow diagram")
 
 ## Citing
 ```
@@ -27,6 +27,7 @@ In the next step, all extracted sequences are clustered by CD-HIT, and clusters 
 * [ISEScan](https://github.com/xiezhq/ISEScan)
 * [CD-HIT](https://anaconda.org/bioconda/cd-hit)
 * [Conda](https://docs.conda.io/en/latest/miniconda.html)
+* [blast](https://anaconda.org/bioconda/blast)
 
 # Installation
 ## Local
@@ -52,6 +53,12 @@ conda install -c bioconda cd-hit
 ```
 conda install -c bioconda artemis
 ```
+
+5. Install blast 
+```
+conda install -c bioconda blast
+```
+
 
 ## Docker 
 1. Create `YOUR_DATA_ROOT` directory on your local machine
@@ -90,3 +97,14 @@ conda install -c bioconda artemis
 - -aS alignment coverage for the shorter sequence, default 0.0 if set to 0.9, the alignment must covers 90% of the sequence
 - -n 4 for thresholds 0.6 ~ 0.7
 - -M max available memory (Mbyte), default 400
+
+7. Run clusters_histogram.py to make a histogram of distribution of sequences in the clusters (optional)
+ ```
+ clusters_histogram.py -i [path_to_cd-hit_output.clstr]
+ ```
+
+8. Run cluster_filter.py to filter out clusters that contains less than threshold number of sequences
+ ```
+ cluster_filter.py -i [path_to_cd-hit_output.clstr] -n [thrashold_number_of_seq] -o [path_to_output.fasta]
+ ```
+- gives fasta file with representative sequences from clusters that contain more sequences than threshold as an output

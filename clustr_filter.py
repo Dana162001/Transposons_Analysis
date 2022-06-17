@@ -8,7 +8,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description="cluster filter and representative seq extraction")
     parser.add_argument("-i", "--input", required=True,
                         help=f".clstr file")
-    parser.add_argument("-n", "--number_of_hits", required=True, default=75,
+    parser.add_argument("-n", "--number_of_hits", required=True, default=20,
                         help=f"number of hist in cluster threshold")
     parser.add_argument("-o", "--output", required=True,
                         help=f".fasta file with rep seq")
